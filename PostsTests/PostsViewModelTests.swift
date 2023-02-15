@@ -23,7 +23,8 @@ final class PostsViewModelTests: XCTestCase {
         // When call login
         await sut.login(userId: userId)
         
-        // Then collected states should be equal to
+        // Then collected states should be
+        // initial -> fetching -> posts
         XCTAssertEqual(
             stateCollector.collectedStates,
             [
@@ -43,7 +44,8 @@ final class PostsViewModelTests: XCTestCase {
         // When call login
         await sut.login(userId: userId)
         
-        // Then collected states should be equal to
+        // Then collected states should be
+        // initial -> fetching -> failure
         XCTAssertEqual(
             stateCollector.collectedStates,
             [

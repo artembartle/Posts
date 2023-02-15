@@ -19,7 +19,6 @@ class PostsViewModel: ObservableObject {
         self.api = api
     }
     
-    
     func login(userId: String) async {
         state = .fetching(userID: userId)
         
