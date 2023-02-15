@@ -1,23 +1,17 @@
 // Developed by Artem Bartle
 
 import XCTest
-import Combine
 
 @MainActor
 final class PostsViewModelTests: XCTestCase {
     var client: MockAPIClient!
     var sut: PostsViewModel!
-    var collectedStates: [PostsViewModel.State]!
-    var disposables = Set<AnyCancellable>()
+    var stateCollector: StateCollector<PostsViewModel.State>!
     
     override func setUpWithError() throws {
         client = MockAPIClient()
         sut = PostsViewModel(api: client)
-        collectedStates = []
-        
-        sut.$state.sink { [weak self] in
-            self?.collectedStates.append($0)
-        }.store(in: &disposables)
+        stateCollector = StateCollector(sut.$state)
     }
     
     func testLogin() async throws {
@@ -31,7 +25,7 @@ final class PostsViewModelTests: XCTestCase {
         
         // Then collected states should be equal to
         XCTAssertEqual(
-            collectedStates,
+            stateCollector.collectedStates,
             [
                 .initial,
                 .fetching(userID: userId),
@@ -51,7 +45,7 @@ final class PostsViewModelTests: XCTestCase {
         
         // Then collected states should be equal to
         XCTAssertEqual(
-            collectedStates,
+            stateCollector.collectedStates,
             [
                 .initial,
                 .fetching(userID: userId),

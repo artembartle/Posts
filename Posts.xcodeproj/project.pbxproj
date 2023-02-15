@@ -17,6 +17,7 @@
 		74965DB6299CE1400092412C /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74965DB5299CE1400092412C /* PostsViewModel.swift */; };
 		74E07C93299D1C0B0004764D /* PostsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E07C92299D1C0B0004764D /* PostsViewModelTests.swift */; };
 		74E07C94299D1C100004764D /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74965DB5299CE1400092412C /* PostsViewModel.swift */; };
+		74E07C96299D437E0004764D /* StateCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E07C95299D437E0004764D /* StateCollector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		74965DB2299CDB6D0092412C /* MockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIClient.swift; sourceTree = "<group>"; };
 		74965DB5299CE1400092412C /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		74E07C92299D1C0B0004764D /* PostsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModelTests.swift; sourceTree = "<group>"; };
+		74E07C95299D437E0004764D /* StateCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateCollector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				74965DB2299CDB6D0092412C /* MockAPIClient.swift */,
+				74E07C95299D437E0004764D /* StateCollector.swift */,
 				74E07C92299D1C0B0004764D /* PostsViewModelTests.swift */,
 			);
 			path = PostsTests;
@@ -210,6 +213,7 @@
 			files = (
 				74E07C93299D1C0B0004764D /* PostsViewModelTests.swift in Sources */,
 				74E07C94299D1C100004764D /* PostsViewModel.swift in Sources */,
+				74E07C96299D437E0004764D /* StateCollector.swift in Sources */,
 				74965DB3299CDB6D0092412C /* MockAPIClient.swift in Sources */,
 				74965DB4299CDBE20092412C /* APIClient.swift in Sources */,
 			);
