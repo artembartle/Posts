@@ -2,7 +2,7 @@
 
 import Foundation
 
-struct Post {
+struct Post: Equatable {
     let id: String
     let title: String
     let body: String

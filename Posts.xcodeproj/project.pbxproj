@@ -12,9 +12,11 @@
 		74965D9A299CCBB60092412C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74965D99299CCBB60092412C /* Assets.xcassets */; };
 		74965D9D299CCBB60092412C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74965D9C299CCBB60092412C /* Preview Assets.xcassets */; };
 		74965DA4299CD25F0092412C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74965DA3299CD25F0092412C /* APIClient.swift */; };
-		74965DAE299CD3D10092412C /* PostsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74965DAD299CD3D10092412C /* PostsTests.swift */; };
 		74965DB3299CDB6D0092412C /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74965DB2299CDB6D0092412C /* MockAPIClient.swift */; };
 		74965DB4299CDBE20092412C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74965DA3299CD25F0092412C /* APIClient.swift */; };
+		74965DB6299CE1400092412C /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74965DB5299CE1400092412C /* PostsViewModel.swift */; };
+		74E07C93299D1C0B0004764D /* PostsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E07C92299D1C0B0004764D /* PostsViewModelTests.swift */; };
+		74E07C94299D1C100004764D /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74965DB5299CE1400092412C /* PostsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,8 +27,9 @@
 		74965D9C299CCBB60092412C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		74965DA3299CD25F0092412C /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		74965DAB299CD3D10092412C /* PostsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PostsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		74965DAD299CD3D10092412C /* PostsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTests.swift; sourceTree = "<group>"; };
 		74965DB2299CDB6D0092412C /* MockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIClient.swift; sourceTree = "<group>"; };
+		74965DB5299CE1400092412C /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
+		74E07C92299D1C0B0004764D /* PostsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,7 @@
 				74965D95299CCBB40092412C /* PostsApp.swift */,
 				74965DA3299CD25F0092412C /* APIClient.swift */,
 				74965D97299CCBB40092412C /* ContentView.swift */,
+				74965DB5299CE1400092412C /* PostsViewModel.swift */,
 				74965D99299CCBB60092412C /* Assets.xcassets */,
 				74965D9B299CCBB60092412C /* Preview Content */,
 			);
@@ -89,7 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				74965DB2299CDB6D0092412C /* MockAPIClient.swift */,
-				74965DAD299CD3D10092412C /* PostsTests.swift */,
+				74E07C92299D1C0B0004764D /* PostsViewModelTests.swift */,
 			);
 			path = PostsTests;
 			sourceTree = "<group>";
@@ -193,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74965DB6299CE1400092412C /* PostsViewModel.swift in Sources */,
 				74965D98299CCBB40092412C /* ContentView.swift in Sources */,
 				74965D96299CCBB40092412C /* PostsApp.swift in Sources */,
 				74965DA4299CD25F0092412C /* APIClient.swift in Sources */,
@@ -203,7 +208,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74965DAE299CD3D10092412C /* PostsTests.swift in Sources */,
+				74E07C93299D1C0B0004764D /* PostsViewModelTests.swift in Sources */,
+				74E07C94299D1C100004764D /* PostsViewModel.swift in Sources */,
 				74965DB3299CDB6D0092412C /* MockAPIClient.swift in Sources */,
 				74965DB4299CDBE20092412C /* APIClient.swift in Sources */,
 			);
