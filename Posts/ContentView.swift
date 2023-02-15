@@ -1,4 +1,4 @@
-// Developed by ___ORGANIZATIONNAME___
+// Developed by Artem Bartle
 
 import SwiftUI
 
