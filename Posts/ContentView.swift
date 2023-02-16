@@ -15,30 +15,30 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                if case VMState.initial = viewModel.state {
-                    loginView
-                }
+            switch viewModel.state {
+            case .initial:
+                loginView
                 
-                if case VMState.fetching = viewModel.state {
+            case .fetching:
+                ZStack {
+                    loginView
                     fetching
                 }
-            }
-            
-            if case VMState.posts = viewModel.state {
+            case .posts:
                 List {
                     ForEach(viewModel.postsVMs, id: \.id) { vm in
                         PostView(viewModel: vm)
                     }
                 }
+            case .failure:
+                loginView
+                    .alert("Error",
+                           isPresented: viewModel.isAlertPresented,
+                           presenting: viewModel.alertTitle) {
+                                Text($0)
+                            }
             }
         }
-        .alert(
-            "Error",
-            isPresented: viewModel.isAlertPresented,
-            presenting: viewModel.alertTitle) {
-                Text($0)
-            }
     }
 }
 
@@ -77,7 +77,7 @@ private extension ContentView {
 struct ContentView_Previews: PreviewProvider {
     static var mockedViewModel: PostsViewModel {
         let apiClient = MockAPIClient()
-                apiClient.response = .success([Post.mock, Post.mock, Post.mock])
+        apiClient.response = .success([Post.mock, Post.mock, Post.mock])
 //        apiClient.response = .failure(.network)
         return PostsViewModel(api: apiClient,
                               state: .posts(userID: "1", posts: [Post.mock]))
