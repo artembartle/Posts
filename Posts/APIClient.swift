@@ -34,5 +34,5 @@ extension APIError: LocalizedError {
 }
 
 protocol APIClient {
-    func loadPosts(userId: String) async throws -> [Post]
+    func loadPosts(userID: String) async throws -> [Post]
 }

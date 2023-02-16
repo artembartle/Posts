@@ -15,13 +15,13 @@ final class PostsViewModelTests: XCTestCase {
     }
     
     func testLogin() async throws {
-        // Given userId and 5 posts
-        let userId = "1"
+        // Given userID and 5 posts
+        let userID = "1"
         let posts = (0..<5).map { _ in Post.mock }
         client.response = .success(posts)
         
         // When call login
-        await sut.login(userId: userId)
+        await sut.login(userID: userID)
         
         // Then collected states should be
         // initial -> fetching -> posts
@@ -29,20 +29,20 @@ final class PostsViewModelTests: XCTestCase {
             stateCollector.collectedStates,
             [
                 .initial,
-                .fetching(userID: userId),
-                .posts(userID: userId, posts: posts)
+                .fetching(userID: userID),
+                .posts(userID: userID, posts: posts)
             ]
         )
     }
     
     func testLoginFailure() async throws {
-        // Given userId and networking related error
-        let userId = "1"
+        // Given userID and networking related error
+        let userID = "1"
         let error = APIError.network
         client.response = .failure(.network)
         
         // When call login
-        await sut.login(userId: userId)
+        await sut.login(userID: userID)
         
         // Then collected states should be
         // initial -> fetching -> failure
@@ -50,22 +50,9 @@ final class PostsViewModelTests: XCTestCase {
             stateCollector.collectedStates,
             [
                 .initial,
-                .fetching(userID: userId),
-                .failure(userID: userId, error: error.localizedDescription)
+                .fetching(userID: userID),
+                .failure(userID: userID, error: error.localizedDescription)
             ]
         )
     }
-}
-
-extension Post {
-    static let mock = Self(
-        id: UUID().uuidString,
-        title: "Title",
-        body: """
-        suscipit nam nisi quo aperiam aut \
-        asperiores eos fugit maiores voluptatibus quia \
-        voluptatem quis ullam qui in alias quia est \
-        consequatur magni mollitia accusamus ea nisi voluptate dicta
-        """
-    )
 }

@@ -1,6 +1,7 @@
 // Developed by Artem Bartle
 
 import Foundation
+import Combine
 
 @MainActor
 class PostsViewModel: ObservableObject {
@@ -13,21 +14,21 @@ class PostsViewModel: ObservableObject {
     
     private let api: APIClient
     
-    @Published var state: State = .initial
+    @Published private(set) var state: State = .initial
     
     init(api: APIClient) {
         self.api = api
     }
     
-    func login(userId: String) async {
-        state = .fetching(userID: userId)
+    func login(userID: String) async {
+        state = .fetching(userID: userID)
         
         do {
-            let posts = try await api.loadPosts(userId: userId)
-            state = .posts(userID: userId, posts: posts)
+            let posts = try await api.loadPosts(userID: userID)
+            state = .posts(userID: userID, posts: posts)
         }
         catch {
-            state = .failure(userID: userId, error: error.localizedDescription)
+            state = .failure(userID: userID, error: error.localizedDescription)
         }
     }
 }
