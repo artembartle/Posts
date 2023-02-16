@@ -12,11 +12,4 @@ extension PostsViewModel {
             }
         } set: { _ in }
     }
-    
-    var alertTitle: String? {
-        guard case let .failure(_, error) = state else {
-            return nil
-        }
-        return error
-    }
 }

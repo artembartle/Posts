@@ -25,13 +25,10 @@ struct ContentView: View {
                 }
             }
             
-            if case let VMState.posts(userID: _, posts: posts) = viewModel.state {
+            if case VMState.posts = viewModel.state {
                 List {
-                    ForEach(posts, id: \.id) { post in
-                        VStack {
-                            Text(post.title)
-                            Text(post.body)
-                        }
+                    ForEach(viewModel.postsVMs, id: \.id) { vm in
+                        PostView(viewModel: vm)
                     }
                 }
             }
@@ -82,7 +79,8 @@ struct ContentView_Previews: PreviewProvider {
         let apiClient = MockAPIClient()
                 apiClient.response = .success([Post.mock, Post.mock, Post.mock])
 //        apiClient.response = .failure(.network)
-        return PostsViewModel(api: apiClient)
+        return PostsViewModel(api: apiClient,
+                              state: .posts(userID: "1", posts: [Post.mock]))
     }
     
     static var previews: some View {
