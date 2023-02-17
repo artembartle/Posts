@@ -8,7 +8,7 @@ struct PostsApp: App {
     @MainActor
     static var mockedViewModel: PostsViewModel {
         let apiClient = MockAPIClient()
-        apiClient.response = .success([Post.mock])
+        apiClient.response = .success( (0..<10).map { Post(id: String($0), title: "Title", body: "Body") } )
         return PostsViewModel(api: apiClient)
     }
     
