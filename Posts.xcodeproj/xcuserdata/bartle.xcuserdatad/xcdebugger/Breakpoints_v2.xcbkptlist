@@ -7,17 +7,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F91ECDBF-17F5-41DC-B73D-EB6761055171"
+            uuid = "328462FD-1DD1-4EAB-8509-C57358401837"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Posts/PostView.swift"
+            filePath = "Posts/PostsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "backingSet()"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "login(userID:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EF972402-E1AD-4AE7-86F4-25A335301480"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Posts/PostsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "postsVMs"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "EF972402-E1AD-4AE7-86F4-25A335301480 - 8e8b7cd945c96265"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Posts.PostsViewModel.postsVMs.getter : Swift.Array&lt;Posts.PostViewModel&gt;"
+                  moduleName = "Posts"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/Posts/PostsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "55">
+               </Location>
+               <Location
+                  uuid = "EF972402-E1AD-4AE7-86F4-25A335301480 - 8e8b7cd945c96265"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Posts.PostsViewModel.postsVMs.getter : Swift.Array&lt;Posts.PostViewModel&gt;"
+                  moduleName = "Posts"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/Posts/PostsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "96">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

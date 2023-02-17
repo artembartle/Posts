@@ -14,36 +14,43 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack {
-            switch viewModel.state {
-            case .initial:
+        switch viewModel.state {
+        case .initial:
+            loginView
+            
+        case .fetching:
+            ZStack {
                 loginView
-                
-            case .fetching:
-                ZStack {
-                    loginView
-                    fetching
-                }
-            case .posts:
+                fetching
+            }
+        case .posts:
+            VStack {
                 List {
-                    ForEach(viewModel.postsVMs, id: \.id) { vm in
+                    ForEach(viewModel.postsVMs) { vm in
                         PostView(viewModel: vm)
                     }
                 }
-            case .failure:
-                loginView
-                    .alert("Error",
-                           isPresented: viewModel.isAlertPresented,
-                           presenting: viewModel.alertTitle) {
-                                Text($0)
-                            }
+                
+                Picker("", selection: viewModel.selectedFilter) {
+                    Text("All").tag(ViewModel.Filter.all)
+                    Text("Favorites").tag(ViewModel.Filter.favorites)
+                }
+                .pickerStyle(.segmented)
+                .padding()
+                
             }
+        case .failure:
+            loginView
+                .alert("Error",
+                       isPresented: viewModel.isAlertPresented,
+                       presenting: viewModel.alertTitle) {
+                    Text($0)
+                }
         }
     }
 }
 
 private extension ContentView {
-    
     var loginView: some View {
         VStack {
             TextField("UserID", text: $userID)
@@ -71,16 +78,19 @@ private extension ContentView {
             ProgressView()
         }
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var mockedViewModel: PostsViewModel {
-        let apiClient = MockAPIClient()
-        apiClient.response = .success([Post.mock, Post.mock, Post.mock])
-//        apiClient.response = .failure(.network)
-        return PostsViewModel(api: apiClient,
-                              state: .posts(userID: "1", posts: [Post.mock]))
+        let dtos = (0..<10).map { i in
+            PostDTO(id: String(i), title: "Title", body: PostDTO.mock.body)
+        }
+        let posts = dtos.map { Post(dto: $0, favorite: true) }
+        let client = MockAPIClient()
+        client.response = .success(dtos)
+        let repository = PostsRepositoryImpl(api: client)
+        return PostsViewModel(state: .posts(userID: "1", posts: posts),
+                              repository: repository)
     }
     
     static var previews: some View {

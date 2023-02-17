@@ -15,8 +15,13 @@
 		74965DB3299CDB6D0092412C /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74965DB2299CDB6D0092412C /* MockAPIClient.swift */; };
 		74965DB4299CDBE20092412C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74965DA3299CD25F0092412C /* APIClient.swift */; };
 		74965DB6299CE1400092412C /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74965DB5299CE1400092412C /* PostsViewModel.swift */; };
-		74A464C7299E7D04008AC34E /* PostViewModel+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A464C6299E7D04008AC34E /* PostViewModel+SwiftUI.swift */; };
+		74A464C7299E7D04008AC34E /* PostsViewModel+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A464C6299E7D04008AC34E /* PostsViewModel+SwiftUI.swift */; };
 		74A464C9299E7DC5008AC34E /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A464C8299E7DC5008AC34E /* PostView.swift */; };
+		74A464CB299F9337008AC34E /* FavoritesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A464CA299F9337008AC34E /* FavoritesStorage.swift */; };
+		74A464CD299FA0E4008AC34E /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A464CC299FA0E4008AC34E /* PostViewModel.swift */; };
+		74A464CE299FA0E8008AC34E /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A464CC299FA0E4008AC34E /* PostViewModel.swift */; };
+		74A464D0299FEAC3008AC34E /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A464CF299FEAC3008AC34E /* PostsRepository.swift */; };
+		74A464D1299FEAC3008AC34E /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A464CF299FEAC3008AC34E /* PostsRepository.swift */; };
 		74E07C93299D1C0B0004764D /* PostsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E07C92299D1C0B0004764D /* PostsViewModelTests.swift */; };
 		74E07C94299D1C100004764D /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74965DB5299CE1400092412C /* PostsViewModel.swift */; };
 		74E07C96299D437E0004764D /* StateCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E07C95299D437E0004764D /* StateCollector.swift */; };
@@ -33,8 +38,11 @@
 		74965DAB299CD3D10092412C /* PostsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PostsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		74965DB2299CDB6D0092412C /* MockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIClient.swift; sourceTree = "<group>"; };
 		74965DB5299CE1400092412C /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
-		74A464C6299E7D04008AC34E /* PostViewModel+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostViewModel+SwiftUI.swift"; sourceTree = "<group>"; };
+		74A464C6299E7D04008AC34E /* PostsViewModel+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostsViewModel+SwiftUI.swift"; sourceTree = "<group>"; };
 		74A464C8299E7DC5008AC34E /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		74A464CA299F9337008AC34E /* FavoritesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStorage.swift; sourceTree = "<group>"; };
+		74A464CC299FA0E4008AC34E /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		74A464CF299FEAC3008AC34E /* PostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepository.swift; sourceTree = "<group>"; };
 		74E07C92299D1C0B0004764D /* PostsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModelTests.swift; sourceTree = "<group>"; };
 		74E07C95299D437E0004764D /* StateCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateCollector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,11 +87,14 @@
 			isa = PBXGroup;
 			children = (
 				74965D95299CCBB40092412C /* PostsApp.swift */,
-				74965DA3299CD25F0092412C /* APIClient.swift */,
-				74965D97299CCBB40092412C /* ContentView.swift */,
 				74A464C8299E7DC5008AC34E /* PostView.swift */,
+				74A464CC299FA0E4008AC34E /* PostViewModel.swift */,
+				74965D97299CCBB40092412C /* ContentView.swift */,
 				74965DB5299CE1400092412C /* PostsViewModel.swift */,
-				74A464C6299E7D04008AC34E /* PostViewModel+SwiftUI.swift */,
+				74A464C6299E7D04008AC34E /* PostsViewModel+SwiftUI.swift */,
+				74A464CF299FEAC3008AC34E /* PostsRepository.swift */,
+				74A464CA299F9337008AC34E /* FavoritesStorage.swift */,
+				74965DA3299CD25F0092412C /* APIClient.swift */,
 				74965D99299CCBB60092412C /* Assets.xcassets */,
 				74965D9B299CCBB60092412C /* Preview Content */,
 			);
@@ -208,11 +219,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				74A464C9299E7DC5008AC34E /* PostView.swift in Sources */,
+				74A464CB299F9337008AC34E /* FavoritesStorage.swift in Sources */,
 				74965DB6299CE1400092412C /* PostsViewModel.swift in Sources */,
 				74965D98299CCBB40092412C /* ContentView.swift in Sources */,
 				74965D96299CCBB40092412C /* PostsApp.swift in Sources */,
+				74A464D0299FEAC3008AC34E /* PostsRepository.swift in Sources */,
 				74965DA4299CD25F0092412C /* APIClient.swift in Sources */,
-				74A464C7299E7D04008AC34E /* PostViewModel+SwiftUI.swift in Sources */,
+				74A464CD299FA0E4008AC34E /* PostViewModel.swift in Sources */,
+				74A464C7299E7D04008AC34E /* PostsViewModel+SwiftUI.swift in Sources */,
 				74E07C97299D45070004764D /* MockAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,7 +235,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74A464CE299FA0E8008AC34E /* PostViewModel.swift in Sources */,
 				74E07C93299D1C0B0004764D /* PostsViewModelTests.swift in Sources */,
+				74A464D1299FEAC3008AC34E /* PostsRepository.swift in Sources */,
 				74E07C94299D1C100004764D /* PostsViewModel.swift in Sources */,
 				74E07C96299D437E0004764D /* StateCollector.swift in Sources */,
 				74965DB3299CDB6D0092412C /* MockAPIClient.swift in Sources */,

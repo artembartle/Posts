@@ -2,7 +2,7 @@
 
 import Foundation
 
-struct Post: Equatable {
+struct PostDTO: Equatable {
     let id: String
     let title: String
     let body: String
@@ -34,5 +34,5 @@ extension APIError: LocalizedError {
 }
 
 protocol APIClient {
-    func loadPosts(userID: String) async throws -> [Post]
+    func loadPosts(userID: String) async throws -> [PostDTO]
 }

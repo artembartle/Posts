@@ -5,6 +5,7 @@ import XCTest
 @MainActor
 final class PostsViewModelTests: XCTestCase {
     var client: MockAPIClient!
+    var repository: PostsRepositoryImpl!
     var sut: PostsViewModel!
     var stateCollector: StateCollector<PostsViewModel.State>!
     
