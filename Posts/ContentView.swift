@@ -4,8 +4,8 @@ import SwiftUI
 import Factory
 
 struct ContentView: View {
-    typealias ViewModel = PostsViewModel
-    typealias VMState = PostsViewModel.State
+    typealias ViewModel = FeedViewModel
+    typealias VMState = FeedViewModel.State
     
     @ObservedObject var viewModel = Container.feedViewModel()
     @State var userID: String = ""
@@ -89,7 +89,7 @@ struct ContentView_Previews: PreviewProvider {
         }
         
         let _ = Container.feedViewModel.register {
-            PostsViewModel(state: .posts(userID: "1", posts: [Post.stub]))
+            FeedViewModel(state: .posts(userID: "1", posts: [Post.stub]))
         }
         
         ContentView()

@@ -3,7 +3,7 @@
 import Foundation
 import Factory
 
-class PostsViewModel: ObservableObject {
+class FeedViewModel: ObservableObject {
     enum Filter: Int, Equatable {
         case all = 0
         case favorites = 1
@@ -17,7 +17,6 @@ class PostsViewModel: ObservableObject {
     }
     
     @Injected(Container.postsRepository) private var repository
-
     @Published private(set) var state: State = .initial
     
     init(state: State = .initial) {
@@ -58,7 +57,7 @@ class PostsViewModel: ObservableObject {
     }
 }
 
-extension PostsViewModel {
+extension FeedViewModel {
     var alertTitle: String? {
         guard case let .failure(_, error) = state else {
             return nil

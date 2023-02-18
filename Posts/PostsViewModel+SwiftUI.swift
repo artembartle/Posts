@@ -2,7 +2,7 @@
 
 import SwiftUI
 
-extension PostsViewModel {
+extension FeedViewModel {
     var isAlertPresented: Binding<Bool> {
         return Binding { [weak self] in
             guard case .failure = self?.state else {

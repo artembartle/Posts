@@ -27,6 +27,6 @@ struct PostsApp: App {
 //            .implements(PostsRepository.self)
 //            .scope(.application)
 //        
-//        register { PostsViewModel(repository: resolve()) }
+//        register { FeedViewModel(repository: resolve()) }
 //    }
 //}

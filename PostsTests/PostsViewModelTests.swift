@@ -19,10 +19,10 @@ extension Container {
 }
 
 @MainActor
-final class PostsViewModelTests: XCTestCase {
+final class FeedViewModelTests: XCTestCase {
     var repository: MockRepository!
-    var sut: PostsViewModel!
-    var stateCollector: StateCollector<PostsViewModel.State>!
+    var sut: FeedViewModel!
+    var stateCollector: StateCollector<FeedViewModel.State>!
     
     override func setUpWithError() throws {
         Container.Registrations.push()
