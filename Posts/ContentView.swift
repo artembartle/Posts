@@ -43,9 +43,9 @@ struct ContentView: View {
             loginView
                 .alert("Error",
                        isPresented: viewModel.isAlertPresented,
-                       presenting: viewModel.alertTitle) {
-                    Text($0)
-                }
+                       presenting: viewModel.alertTitle,
+                       actions: { _ in },
+                       message: { Text($0) })
         }
     }
 }
@@ -84,7 +84,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let _ = Container.apiClient.register {
             let dtos = (0..<10).map { i in
-                PostDTO.stub(id: String(i))
+                PostDTO.stub(id: i)
             }
             let client = MockAPIClient()
             client.response = .success(dtos)

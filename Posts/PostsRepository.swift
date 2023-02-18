@@ -23,7 +23,7 @@ extension Post {
     }
     
     init(dto: PostDTO, favorite: Bool = false) {
-        self.id = dto.id
+        self.id = String(dto.id)
         self.title = dto.title
         self.body = dto.body
         self.favorite = favorite
@@ -50,7 +50,7 @@ class PostsRepositoryImpl: PostsRepository {
     func getPosts(userID: String) async throws -> [Post] {
         let dtos = try await api.loadPosts(userID: userID)
         return dtos.map { dto in
-            let favorite = favoritesStorage.isFavorite(id: dto.id)
+            let favorite = favoritesStorage.isFavorite(id: String(dto.id))
             return Post(dto: dto, favorite: favorite)
         }
     }

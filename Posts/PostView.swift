@@ -12,7 +12,7 @@ struct PostView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .topLeading) {
+        HStack {
             VStack(alignment: .leading) {
                 Text(viewModel.title)
                     .font(.title)
@@ -20,21 +20,22 @@ struct PostView: View {
                     .font(.body)
             }
             
-            HStack {
+            Spacer()
+
+            VStack {
                 Spacer()
-                VStack {
-                    Button {
-                        viewModel.triggerFavoriteAction()
-                    } label: {
-                        Image(systemName: viewModel.favorite ? "heart.fill" : "heart")
-                    }
-                    .padding()
-                    Spacer()
+                
+                Button {
+                    viewModel.triggerFavoriteAction()
+                } label: {
+                    Image(systemName: viewModel.favorite ? "heart.fill" : "heart")
                 }
-
+                .padding()
+                
+                Spacer()
             }
-
         }
+        
     }
 }
 
