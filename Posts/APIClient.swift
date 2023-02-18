@@ -34,7 +34,7 @@ enum APIError: Equatable {
 }
 
 extension APIError: LocalizedError {
-    var errorDescription: String? {
+    var localizedDescription: String? {
         switch self {
         case .parsing:
             return NSLocalizedString("A decoding error has occured.", comment: "")
@@ -91,10 +91,10 @@ class LiveAPIClient : APIClient {
         do {
             let (data, _) = try await urlSession.data(from: url)
             return try JSONDecoder().decode(T.self, from: data)
-//        } catch is URLError {
-//            throw APIError.network
-//        } catch is DecodingError {
-//            throw APIError.parsing
+        } catch is URLError {
+            throw APIError.network
+        } catch is DecodingError {
+            throw APIError.parsing
         } catch {
             throw APIError.unknown(description: error.localizedDescription)
         }

@@ -42,7 +42,7 @@ struct ContentView: View {
         case .failure:
             loginView
                 .alert("Error",
-                       isPresented: viewModel.isAlertPresented,
+                       isPresented: $viewModel.isAlertPresented,
                        presenting: viewModel.alertTitle,
                        actions: { _ in },
                        message: { Text($0) })
@@ -94,8 +94,8 @@ struct ContentView_Previews: PreviewProvider {
         let allPosts = [Post.stub()]
         let _ = Container.feedViewModel.register {
             FeedViewModel(state: .posts(userID: "1",
-                                         posts: allPosts,
-                                     displayed: allPosts))
+                                        posts: allPosts,
+                                        displayed: allPosts))
         }
         
         ContentView()

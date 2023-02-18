@@ -30,12 +30,21 @@ extension Post {
     }
 }
 
-enum RepositoryError: Error, Equatable {
-    case parsing
-    case network
-    case incorrectUserId
+enum RepositoryError: Equatable {
     case apiError(error: APIError)
     case unknown(description: String)
+}
+
+extension RepositoryError: LocalizedError {
+    var localizedDescription: String? {
+        switch self {
+        case .apiError(let apiError):
+            return apiError.localizedDescription
+    
+        case .unknown(let decription):
+            return decription
+        }
+    }
 }
 
 protocol PostsRepository {
@@ -48,10 +57,16 @@ class PostsRepositoryImpl: PostsRepository {
     @Injected(Container.apiClient) private var api
     
     func getPosts(userID: String) async throws -> [Post] {
-        let dtos = try await api.loadPosts(userID: userID)
-        return dtos.map { dto in
-            let favorite = favoritesStorage.isFavorite(id: String(dto.id))
-            return Post(dto: dto, favorite: favorite)
+        do {
+            let dtos = try await api.loadPosts(userID: userID)
+            return dtos.map { dto in
+                let favorite = favoritesStorage.isFavorite(id: String(dto.id))
+                return Post(dto: dto, favorite: favorite)
+            }
+        } catch let apiError as APIError {
+            throw RepositoryError.apiError(error: apiError)
+        } catch {
+            throw RepositoryError.unknown(description: error.localizedDescription)
         }
     }
     

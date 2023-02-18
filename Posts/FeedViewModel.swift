@@ -13,11 +13,12 @@ class FeedViewModel: ObservableObject {
         case initial
         case fetching(userID: String)
         case posts(userID: String, posts: [Post], displayed: [Post], filter: Filter = .all)
-        case failure(userID: String, error: String)
+        case failure(userID: String, error: String?)
     }
     
     @Injected(Container.postsRepository) private var repository
     @Published private(set) var state: State = .initial
+    @Published var isAlertPresented = false
     
     init(state: State = .initial) {
         self.state = state
@@ -30,9 +31,13 @@ class FeedViewModel: ObservableObject {
         do {
             let posts = try await repository.getPosts(userID: userID)
             state = .posts(userID: userID, posts: posts, displayed: posts, filter: .all)
-        }
-        catch {
+        } catch let localizedError as RepositoryError {
+            state = .failure(userID: userID, error: localizedError.localizedDescription)
+            isAlertPresented = true
+        } catch {
+            print("Unexpected error type after getPost() call")
             state = .failure(userID: userID, error: error.localizedDescription)
+            isAlertPresented = true
         }
     }
     
@@ -84,8 +89,6 @@ extension FeedViewModel {
         guard case let .posts(_, _, displayed, _) = state else {
             return []
         }
-        
-//        let filteredPosts = filteredPosts(posts: posts, filter: filter)
         
         return displayed
             .map { post in
