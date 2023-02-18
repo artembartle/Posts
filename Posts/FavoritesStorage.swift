@@ -17,7 +17,11 @@ fileprivate enum UserDefaultsConstant {
 class UserDefaultsFavorites<Identifier: Hashable>: FavoritesStorage {
     fileprivate typealias Constant = UserDefaultsConstant
     
-    private let userDefaults = UserDefaults.standard
+    private let userDefaults: UserDefaults
+    
+    init(userDefaults: UserDefaults = .standard) {
+        self.userDefaults = userDefaults
+    }
     
     private func backingSet() -> Set<Identifier> {
         guard let backingArray = userDefaults.object(forKey: Constant.backingSetKey) as? Array<Identifier> else {

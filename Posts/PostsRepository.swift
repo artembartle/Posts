@@ -1,12 +1,24 @@
 // Developed by Artem Bartle
 
 import Foundation
+import Factory
 
-struct Post: Equatable {
+struct Post: Equatable, Identifiable {
     let id: String
     let title: String
     let body: String
     var favorite: Bool
+    
+    init(id: String, title: String, body: String, favorite: Bool) {
+        self.id = id
+        self.title = title
+        self.body = body
+        self.favorite = favorite
+    }
+}
+
+extension Post {
+    static let stub = Self(dto: PostDTO.stub, favorite: true)
     
     init(dto: PostDTO, favorite: Bool = false) {
         self.id = dto.id
@@ -16,8 +28,12 @@ struct Post: Equatable {
     }
 }
 
-extension Post {
-    static let mock = Self(dto: PostDTO.mock, favorite: true)
+enum RepositoryError: Error, Equatable {
+    case parsing
+    case network
+    case incorrectUserId
+    case apiError(error: APIError)
+    case unknown(description: String)
 }
 
 protocol PostsRepository {
@@ -26,12 +42,8 @@ protocol PostsRepository {
 }
 
 class PostsRepositoryImpl: PostsRepository {
-    private let favoritesStorage: any FavoritesStorage<String> = UserDefaultsFavorites()
-    private let api: APIClient
-
-    init(api: APIClient) {
-        self.api = api
-    }
+    @Injected(Container.favoritesStorage) private var favoritesStorage
+    @Injected(Container.apiClient) private var api
     
     func getPosts(userID: String) async throws -> [Post] {
         let dtos = try await api.loadPosts(userID: userID)

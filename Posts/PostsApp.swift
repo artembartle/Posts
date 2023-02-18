@@ -4,18 +4,29 @@ import SwiftUI
 
 @main
 struct PostsApp: App {
-    @MainActor
-    static var mockedViewModel: PostsViewModel {
-        let posts = (0..<10).map { PostDTO(id: String($0), title: "Title", body: PostDTO.mock.body) }
-        let client = MockAPIClient()
-        client.response = .success(posts)
-        let repository = PostsRepositoryImpl(api: client)
-        return PostsViewModel(repository: repository)
-    }
-    
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: PostsApp.mockedViewModel)
+            ContentView()
         }
     }
 }
+
+//extension Resolver: ResolverRegistering {
+//    public static func registerAllServices() {
+//        register { UserDefaultsFavorites<String>() }
+//            .implements((any FavoritesStorage<String>).self)
+//        
+//        register { MockAPIClient() }
+//            .resolveProperties { (_, client) in
+//                let posts = (0..<10).map { PostDTO(id: String($0), title: "Title", body: PostDTO.mock.body) }
+//                client.response = .success(posts)
+//            }
+//            .implements(APIClient.self)
+//        
+//        register { PostsRepositoryImpl(favoritesStorage: resolve(), api: resolve()) }
+//            .implements(PostsRepository.self)
+//            .scope(.application)
+//        
+//        register { PostsViewModel(repository: resolve()) }
+//    }
+//}

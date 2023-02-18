@@ -36,7 +36,7 @@
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "EF972402-E1AD-4AE7-86F4-25A335301480 - 8e8b7cd945c96265"
+                  uuid = "EF972402-E1AD-4AE7-86F4-25A335301480 - 8e8b7cd945c96202"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -46,12 +46,12 @@
                   urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/Posts/PostsViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
                   offsetFromSymbolStart = "55">
                </Location>
                <Location
-                  uuid = "EF972402-E1AD-4AE7-86F4-25A335301480 - 8e8b7cd945c96265"
+                  uuid = "EF972402-E1AD-4AE7-86F4-25A335301480 - 8e8b7cd945c96202"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -61,9 +61,9 @@
                   urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/Posts/PostsViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "96">
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "99">
                </Location>
             </Locations>
          </BreakpointContent>

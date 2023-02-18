@@ -1,14 +1,14 @@
 // Developed by Artem Bartle
 
 import Foundation
-import Combine
+import Factory
 
-@MainActor
 class PostsViewModel: ObservableObject {
     enum Filter: Int, Equatable {
         case all = 0
         case favorites = 1
     }
+    
     enum State: Equatable {
         case initial
         case fetching(userID: String)
@@ -16,15 +16,15 @@ class PostsViewModel: ObservableObject {
         case failure(userID: String, error: String)
     }
     
-    private let repository: PostsRepository
-    
+    @Injected(Container.postsRepository) private var repository
+
     @Published private(set) var state: State = .initial
     
-    init(state: State = .initial, repository: PostsRepository) {
+    init(state: State = .initial) {
         self.state = state
-        self.repository = repository
     }
     
+    @MainActor
     func login(userID: String) async {
         state = .fetching(userID: userID)
         

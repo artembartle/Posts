@@ -1,18 +1,15 @@
 // Developed by Artem Bartle
 
 import SwiftUI
+import Factory
 
 struct ContentView: View {
     typealias ViewModel = PostsViewModel
     typealias VMState = PostsViewModel.State
     
-    @ObservedObject var viewModel: ViewModel
+    @ObservedObject var viewModel = Container.feedViewModel()
     @State var userID: String = ""
-    
-    init(viewModel: ViewModel) {
-        self.viewModel = viewModel
-    }
-    
+
     var body: some View {
         switch viewModel.state {
         case .initial:
@@ -81,19 +78,20 @@ private extension ContentView {
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var mockedViewModel: PostsViewModel {
-        let dtos = (0..<10).map { i in
-            PostDTO(id: String(i), title: "Title", body: PostDTO.mock.body)
-        }
-        let posts = dtos.map { Post(dto: $0, favorite: true) }
-        let client = MockAPIClient()
-        client.response = .success(dtos)
-        let repository = PostsRepositoryImpl(api: client)
-        return PostsViewModel(state: .posts(userID: "1", posts: posts),
-                              repository: repository)
-    }
-    
     static var previews: some View {
-        ContentView(viewModel: mockedViewModel)
+        let _ = Container.apiClient.register {
+            let dtos = (0..<10).map { i in
+                PostDTO(id: String(i), title: "Title", body: PostDTO.stub.body)
+            }
+            let client = MockAPIClient()
+            client.response = .success(dtos)
+            return client
+        }
+        
+        let _ = Container.feedViewModel.register {
+            PostsViewModel(state: .posts(userID: "1", posts: [Post.stub]))
+        }
+        
+        ContentView()
     }
 }

@@ -21,10 +21,6 @@ extension PostsViewModel {
             
             return filter
         } set: { [weak self] newFilter in
-            guard case .posts = self?.state else {
-                return
-            }
-            
             self?.applyFilter(filter: newFilter)
         }
     }

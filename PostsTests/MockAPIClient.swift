@@ -12,16 +12,3 @@ class MockAPIClient: APIClient {
         return try response.get()
     }
 }
-
-extension PostDTO {
-    static let mock = Self(
-        id: UUID().uuidString,
-        title: "Title",
-        body: """
-        suscipit nam nisi quo aperiam aut \
-        asperiores eos fugit maiores voluptatibus quia \
-        voluptatem quis ullam qui in alias quia est \
-        consequatur magni mollitia accusamus ea nisi voluptate dicta
-        """
-    )
-}
