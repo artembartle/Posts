@@ -3,7 +3,7 @@
 import SwiftUI
 import Factory
 
-struct ContentView: View {
+struct FeedView: View {
     typealias ViewModel = FeedViewModel
     typealias VMState = FeedViewModel.State
     
@@ -50,7 +50,7 @@ struct ContentView: View {
     }
 }
 
-private extension ContentView {
+private extension FeedView {
     var loginView: some View {
         VStack {
             TextField("UserID", text: $userID)
@@ -80,7 +80,7 @@ private extension ContentView {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
         let _ = Container.apiClient.register {
             let dtos = (0..<10).map { i in
@@ -98,6 +98,6 @@ struct ContentView_Previews: PreviewProvider {
                                         displayed: allPosts))
         }
         
-        ContentView()
+        FeedView()
     }
 }
