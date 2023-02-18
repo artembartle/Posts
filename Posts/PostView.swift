@@ -40,6 +40,6 @@ struct PostView: View {
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        PostView(viewModel: PostViewModel(post: Post.stub))
+        PostView(viewModel: PostViewModel(post: Post.stub()))
     }
 }

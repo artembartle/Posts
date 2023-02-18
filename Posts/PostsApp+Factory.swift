@@ -7,7 +7,7 @@ extension Container {
     
     static let apiClient = Factory<APIClient> {
         let client = MockAPIClient()
-        let posts = (0..<10).map { PostDTO(id: String($0), title: "Title", body: PostDTO.stub.body) }
+        let posts = (0..<10).map { PostDTO.stub(id: String($0)) }
         client.response = .success(posts)
         return client
     }

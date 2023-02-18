@@ -18,7 +18,9 @@ struct Post: Equatable, Identifiable {
 }
 
 extension Post {
-    static let stub = Self(dto: PostDTO.stub, favorite: true)
+    static func stub(favorite: Bool = false) -> Self {
+        Self(dto: PostDTO.stub(), favorite: favorite)
+    }
     
     init(dto: PostDTO, favorite: Bool = false) {
         self.id = dto.id

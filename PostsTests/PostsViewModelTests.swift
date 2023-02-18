@@ -3,83 +3,189 @@
 import XCTest
 import Factory
 
-extension Container {
-    static func setupMocks() {
-//        favoritesStorage = Factory<any FavoritesStorage<Post.ID>> { UserDefaultsFavorites<Post.ID>() }
-        favoritesStorage.register {
-            guard let userDefaults = UserDefaults(suiteName: #file) else {
-                fatalError()
-            }
-            userDefaults.removePersistentDomain(forName: #file)
-            return UserDefaultsFavorites<Post.ID>(userDefaults: userDefaults)
-        }
-//        myService.register { MockServiceN(4) }
-//        sharedService.register { MockService2() }
-    }
-}
-
 @MainActor
 final class FeedViewModelTests: XCTestCase {
-    var repository: MockRepository!
-    var sut: FeedViewModel!
-    var stateCollector: StateCollector<FeedViewModel.State>!
     
     override func setUpWithError() throws {
         Container.Registrations.push()
         Container.setupMocks()
         
-        // Register MockRepository
-        Container.postsRepository.register {
-            MockRepository()
+        let _ = Container.feedViewModel.register {
+            FeedViewModel(state: .posts(userID: userID,
+                                        posts: [favorite] + [nonFavorite],
+                                    displayed: favorite + nonFavorite))
         }
+        let sut = Container.feedViewModel()
+        let stateCollector = StateCollector(sut.$state)
 
-        sut = Container.feedViewModel()
-        stateCollector = StateCollector(sut.$state)
-        repository = Container.postsRepository() as? MockRepository
     }
     
     override func tearDown() async throws {
         Container.Registrations.pop()
     }
     
-    func testLogin() async throws {
-        // Given userID and 5 posts
+    func testApplyOnlyFavoritesFilter() {
+        // Given userID and favorite posts and non-favorite posts
         let userID = "1"
-        let posts = (0..<5).map { _ in Post.stub }
-        repository.response = .success(posts)
-                
-        // When call login
-        await sut.login(userID: userID)
+        let favorite = [Post(id: "1", title: "A", body: "", favorite: true)]
+        let nonFavorite = [Post(id: "2", title: "B", body: "", favorite: false)]
+
+        let _ = Container.feedViewModel.register {
+            FeedViewModel(state: .posts(userID: "1", posts: favorite + nonFavorite, displayed: favorite + nonFavorite))
+        }
+        let sut = Container.feedViewModel()
+        let stateCollector = StateCollector(sut.$state)
+            
+        // When
+        sut.applyFilter(filter: .favorites)
         
         // Then collected states should be
-        // initial -> fetching -> posts
+        // posts(fav+nonFav, filter: .all) -> posts(fav, filter: .favorites)
         XCTAssertEqual(
             stateCollector.collectedStates,
             [
-                .initial,
-                .fetching(userID: userID),
-                .posts(userID: userID, posts: posts)
+                .posts(userID: userID, posts: favorite + nonFavorite, displayed: favorite + nonFavorite, filter: .all),
+                .posts(userID: userID, posts: favorite + nonFavorite, displayed: favorite, filter: .favorites)
             ]
         )
     }
     
-    func testLoginFailure() async throws {
-        // Given userID and networking related error
+    func testApplyAllPostsFilter() {
+        // Given userID and favorite posts and non-favorite posts
         let userID = "1"
-        let error = APIError.network
-        repository.response = .failure(.network)
+        let favorite = [Post(id: "1", title: "A", body: "", favorite: true)]
+        let nonFavorite = [Post(id: "2", title: "B", body: "", favorite: false)]
 
-        // When call login
-        await sut.login(userID: userID)
-
+        let _ = Container.feedViewModel.register {
+            FeedViewModel(state: .posts(userID: "1", posts: favorite + nonFavorite, displayed: favorite, filter: .favorites))
+        }
+        let sut = Container.feedViewModel()
+        let stateCollector = StateCollector(sut.$state)
+            
+        // When
+        sut.applyFilter(filter: .all)
+        
         // Then collected states should be
-        // initial -> fetching -> failure
+        // posts(displayed: favorite, filter: .favorites) -> posts(displayed: favorite + nonFavorite, filter: .all)
         XCTAssertEqual(
             stateCollector.collectedStates,
             [
-                .initial,
-                .fetching(userID: userID),
-                .failure(userID: userID, error: error.localizedDescription)
+                .posts(userID: userID, posts: favorite + nonFavorite, displayed: favorite, filter: .favorites),
+                .posts(userID: userID, posts: favorite + nonFavorite, displayed: favorite + nonFavorite, filter: .all)
+            ]
+        )
+    }
+    
+    func testAddToFavorites() {
+        // Given userID and favorite posts and non-favorite posts
+        let userID = "1"
+        let favorite = [Post(id: "1", title: "A", body: "", favorite: true)]
+        let nonFavoritePost = Post(id: "2", title: "B", body: "", favorite: false)
+
+        let _ = Container.feedViewModel.register {
+            FeedViewModel(state: .posts(userID: "1", posts: favorite + [nonFavoritePost], displayed: favorite + [nonFavoritePost], filter: .all))
+        }
+        let sut = Container.feedViewModel()
+        let stateCollector = StateCollector(sut.$state)
+                        
+        // When make apply favorite action on nonFavorite post
+        sut.applyFavoriteAction(post: nonFavoritePost)
+        
+        // Then collected states should be
+        // posts(displayed: favorite + [nonFavoritePost], filter: .all) ->
+        // posts(displayed: favorite + [newFavPost], filter: .all)
+        var newFavPost = nonFavoritePost
+        newFavPost.favorite = true
+        
+        XCTAssertEqual(
+            stateCollector.collectedStates,
+            [
+                .posts(userID: userID,
+                       posts: favorite + [nonFavoritePost],
+                       displayed: favorite + [nonFavoritePost],
+                       filter: .all),
+                .posts(userID: userID,
+                       posts: favorite + [newFavPost],
+                       displayed: favorite + [newFavPost],
+                       filter: .all)
+            ]
+        )
+    }
+    
+    func testRemoveFromFavorites() {
+        // Given userID and favorite posts and non-favorite posts
+        let userID = "1"
+        let favoritePost = Post(id: "1", title: "A", body: "", favorite: true)
+        let nonFavoritePosts = [Post(id: "2", title: "B", body: "", favorite: false)]
+
+        let _ = Container.feedViewModel.register {
+            FeedViewModel(state: .posts(userID: "1",
+                                        posts: [favoritePost] + nonFavoritePosts,
+                                        displayed: [favoritePost] + nonFavoritePosts,
+                                        filter: .all))
+        }
+        let sut = Container.feedViewModel()
+        let stateCollector = StateCollector(sut.$state)
+                        
+        // When make apply favorite action on favorite post
+        sut.applyFavoriteAction(post: favoritePost)
+        
+        // Then collected states should be
+        // posts(displayed: [favoritePost] + nonFavoritePosts, filter: .all) ->
+        // posts(displayed: [newNonFavPost] + nonFavoritePosts, filter: .all)
+        var newNonFavPost = favoritePost
+        newNonFavPost.favorite = false
+        
+        XCTAssertEqual(
+            stateCollector.collectedStates,
+            [
+                .posts(userID: userID,
+                       posts: [favoritePost] + nonFavoritePosts,
+                       displayed: [favoritePost] + nonFavoritePosts,
+                       filter: .all),
+                .posts(userID: userID,
+                       posts: [newNonFavPost] + nonFavoritePosts,
+                       displayed: [newNonFavPost] + nonFavoritePosts,
+                       filter: .all)
+            ]
+        )
+    }
+    
+    func testRemoveFromFavoritesWhileFavFilterIsActive() {
+        // Given userID and favorite posts and non-favorite posts
+        let userID = "1"
+        let favoritePost = Post(id: "1", title: "A", body: "", favorite: true)
+        let nonFavoritePosts = [Post(id: "2", title: "B", body: "", favorite: false)]
+
+        let _ = Container.feedViewModel.register {
+            FeedViewModel(state: .posts(userID: "1",
+                                        posts: [favoritePost] + nonFavoritePosts,
+                                        displayed: [favoritePost] + nonFavoritePosts,
+                                        filter: .favorites))
+        }
+        let sut = Container.feedViewModel()
+        let stateCollector = StateCollector(sut.$state)
+                        
+        // When make apply favorite action on favorite post
+        sut.applyFavoriteAction(post: favoritePost)
+        
+        // Then collected states should be
+        // posts(displayed: [favoritePost] + nonFavoritePosts, filter: .filter) ->
+        // posts(displayed: [newNonFavPost] + nonFavoritePosts, filter: .favorites)
+        var newNonFavPost = favoritePost
+        newNonFavPost.favorite = false
+        
+        XCTAssertEqual(
+            stateCollector.collectedStates,
+            [
+                .posts(userID: userID,
+                       posts: [favoritePost] + nonFavoritePosts,
+                       displayed: [favoritePost] + nonFavoritePosts,
+                       filter: .favorites),
+                .posts(userID: userID,
+                       posts: [newNonFavPost] + nonFavoritePosts,
+                       displayed: [newNonFavPost] + nonFavoritePosts,
+                       filter: .favorites)
             ]
         )
     }

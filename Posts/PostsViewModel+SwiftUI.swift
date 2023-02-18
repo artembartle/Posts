@@ -15,7 +15,7 @@ extension FeedViewModel {
     
     var selectedFilter: Binding<Filter> {
         return Binding { [weak self] in
-            guard case let .posts(_, _, filter) = self?.state else {
+            guard case let .posts(_, _, _, filter) = self?.state else {
                 return .all
             }
             

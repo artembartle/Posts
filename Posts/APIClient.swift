@@ -9,16 +9,18 @@ struct PostDTO: Equatable {
 }
 
 extension PostDTO {
-    static let stub = Self(
-        id: UUID().uuidString,
-        title: "Title",
-        body: """
-        suscipit nam nisi quo aperiam aut \
-        asperiores eos fugit maiores voluptatibus quia \
-        voluptatem quis ullam qui in alias quia est \
-        consequatur magni mollitia accusamus ea nisi voluptate dicta
-        """
-    )
+    static func stub(id: String = UUID().uuidString) -> Self {
+        Self(
+            id: id,
+            title: "Title",
+            body: """
+            suscipit nam nisi quo aperiam aut \
+            asperiores eos fugit maiores voluptatibus quia \
+            voluptatem quis ullam qui in alias quia est \
+            consequatur magni mollitia accusamus ea nisi voluptate dicta
+            """
+        )
+    }
 }
 
 enum APIError: Error, Equatable {
