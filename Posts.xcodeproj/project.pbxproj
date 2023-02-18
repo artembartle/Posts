@@ -30,7 +30,7 @@
 		74A464D0299FEAC3008AC34E /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A464CF299FEAC3008AC34E /* PostsRepository.swift */; };
 		74A464D1299FEAC3008AC34E /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A464CF299FEAC3008AC34E /* PostsRepository.swift */; };
 		74A464D729A0B042008AC34E /* FavoritesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A464CA299F9337008AC34E /* FavoritesStorage.swift */; };
-		74E07C93299D1C0B0004764D /* PostsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E07C92299D1C0B0004764D /* PostsViewModelTests.swift */; };
+		74E07C93299D1C0B0004764D /* FavoritesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E07C92299D1C0B0004764D /* FavoritesTests.swift */; };
 		74E07C94299D1C100004764D /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74965DB5299CE1400092412C /* FeedViewModel.swift */; };
 		74E07C96299D437E0004764D /* StateCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E07C95299D437E0004764D /* StateCollector.swift */; };
 		74E07C97299D45070004764D /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74965DB2299CDB6D0092412C /* MockAPIClient.swift */; };
@@ -55,7 +55,7 @@
 		74A464CA299F9337008AC34E /* FavoritesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStorage.swift; sourceTree = "<group>"; };
 		74A464CC299FA0E4008AC34E /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		74A464CF299FEAC3008AC34E /* PostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepository.swift; sourceTree = "<group>"; };
-		74E07C92299D1C0B0004764D /* PostsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModelTests.swift; sourceTree = "<group>"; };
+		74E07C92299D1C0B0004764D /* FavoritesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTests.swift; sourceTree = "<group>"; };
 		74E07C95299D437E0004764D /* StateCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateCollector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,7 +131,7 @@
 				74965DB2299CDB6D0092412C /* MockAPIClient.swift */,
 				7497BF3C29A0F1DA00A7FBF4 /* MockRepository.swift */,
 				74E07C95299D437E0004764D /* StateCollector.swift */,
-				74E07C92299D1C0B0004764D /* PostsViewModelTests.swift */,
+				74E07C92299D1C0B0004764D /* FavoritesTests.swift */,
 				7495A53F29A13A8700EA75E7 /* LoginTests.swift */,
 				7495A53D29A11DF400EA75E7 /* PostTests+Factory.swift */,
 			);
@@ -275,7 +275,7 @@
 				74A464D729A0B042008AC34E /* FavoritesStorage.swift in Sources */,
 				74A464CE299FA0E8008AC34E /* PostViewModel.swift in Sources */,
 				7495A54029A13A8700EA75E7 /* LoginTests.swift in Sources */,
-				74E07C93299D1C0B0004764D /* PostsViewModelTests.swift in Sources */,
+				74E07C93299D1C0B0004764D /* FavoritesTests.swift in Sources */,
 				7495A53E29A11DF400EA75E7 /* PostTests+Factory.swift in Sources */,
 				74A464D1299FEAC3008AC34E /* PostsRepository.swift in Sources */,
 				74E07C94299D1C100004764D /* FeedViewModel.swift in Sources */,

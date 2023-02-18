@@ -3,7 +3,7 @@
 import Foundation
 
 class MockRepository: PostsRepository {
-    var response: Result<[Post], APIError>?
+    var response: Result<[Post], RepositoryError>?
     
     func getPosts(userID: String) async throws -> [Post] {
         guard let response = response else {

@@ -46,8 +46,8 @@ final class LoginTests: XCTestCase {
     func testLoginFailure() async {
         // Given userID and networking related error
         let userID = "1"
-        let error = APIError.network
-        repository.response = .failure(.network)
+        let error = RepositoryError.apiError(error: .network)
+        repository.response = .failure(error)
 
         // When call login
         await sut.login(userID: userID)

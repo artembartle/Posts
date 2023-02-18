@@ -4,20 +4,10 @@ import XCTest
 import Factory
 
 @MainActor
-final class FeedViewModelTests: XCTestCase {
-    
+final class FavoritesTests: XCTestCase {
     override func setUpWithError() throws {
         Container.Registrations.push()
         Container.setupMocks()
-        
-        let _ = Container.feedViewModel.register {
-            FeedViewModel(state: .posts(userID: userID,
-                                        posts: [favorite] + [nonFavorite],
-                                    displayed: favorite + nonFavorite))
-        }
-        let sut = Container.feedViewModel()
-        let stateCollector = StateCollector(sut.$state)
-
     }
     
     override func tearDown() async throws {
@@ -31,7 +21,7 @@ final class FeedViewModelTests: XCTestCase {
         let nonFavorite = [Post(id: "2", title: "B", body: "", favorite: false)]
 
         let _ = Container.feedViewModel.register {
-            FeedViewModel(state: .posts(userID: "1", posts: favorite + nonFavorite, displayed: favorite + nonFavorite))
+            FeedViewModel(state: .posts(userID: userID, posts: favorite + nonFavorite, displayed: favorite + nonFavorite))
         }
         let sut = Container.feedViewModel()
         let stateCollector = StateCollector(sut.$state)
@@ -83,7 +73,7 @@ final class FeedViewModelTests: XCTestCase {
         let nonFavoritePost = Post(id: "2", title: "B", body: "", favorite: false)
 
         let _ = Container.feedViewModel.register {
-            FeedViewModel(state: .posts(userID: "1", posts: favorite + [nonFavoritePost], displayed: favorite + [nonFavoritePost], filter: .all))
+            FeedViewModel(state: .posts(userID: userID, posts: favorite + [nonFavoritePost], displayed: favorite + [nonFavoritePost], filter: .all))
         }
         let sut = Container.feedViewModel()
         let stateCollector = StateCollector(sut.$state)
@@ -119,7 +109,7 @@ final class FeedViewModelTests: XCTestCase {
         let nonFavoritePosts = [Post(id: "2", title: "B", body: "", favorite: false)]
 
         let _ = Container.feedViewModel.register {
-            FeedViewModel(state: .posts(userID: "1",
+            FeedViewModel(state: .posts(userID: userID,
                                         posts: [favoritePost] + nonFavoritePosts,
                                         displayed: [favoritePost] + nonFavoritePosts,
                                         filter: .all))
@@ -158,7 +148,7 @@ final class FeedViewModelTests: XCTestCase {
         let nonFavoritePosts = [Post(id: "2", title: "B", body: "", favorite: false)]
 
         let _ = Container.feedViewModel.register {
-            FeedViewModel(state: .posts(userID: "1",
+            FeedViewModel(state: .posts(userID: userID,
                                         posts: [favoritePost] + nonFavoritePosts,
                                         displayed: [favoritePost] + nonFavoritePosts,
                                         filter: .favorites))
