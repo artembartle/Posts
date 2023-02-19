@@ -9,7 +9,7 @@ class FeedViewModel: ObservableObject {
         case all = 0
         case favorites = 1
     }
-
+    
     struct State: Equatable {
         var all: [Post] = []
         var displayed: [Post] = []
@@ -24,11 +24,30 @@ class FeedViewModel: ObservableObject {
                 all: posts, displayed: posts, filter: .all, isEmpty: posts.isEmpty
             )
         }
-    }
         
+        static func loaded(posts: [Post], filter: Filter) -> Self {
+            let displayed = (filter == .all) ? posts : posts.filter { $0.favorite }
+            
+            return Self(
+                all: posts,
+                displayed: displayed,
+                filter: filter,
+                isEmpty: displayed.isEmpty
+            )
+        }
+        
+        static func updated(state: Self, updated: Post) -> Self {
+            var newPosts = state.all
+            if let index = newPosts.firstIndex(where: { $0.id == updated.id }) {
+                newPosts[index] = updated
+            }
+            return loaded(posts: newPosts, filter: state.filter)
+
+        }
+    }
+    
     @Injected(Container.postsRepository) private var repository
     @Published var state: State = .initial
-//    var postsVMs: [PostViewModel] = []
     
     init(state: State = .initial) {
         self.state = state
@@ -40,87 +59,27 @@ class FeedViewModel: ObservableObject {
             let posts = try await repository.getPosts()
             state = .loaded(posts: posts)
         } catch let repoError as RepositoryError {
-//            state = .failure(error: repoError)
+            //            state = .failure(error: repoError)
         } catch {
             print("Unexpected error type after getPost() call")
-//            state = .failure(error: error)
+            //            state = .failure(error: error)
         }
     }
     
     func applyFilter(filter: Filter) {
-        state.filter = filter
-        
-        let filteredPosts = filteredPosts(posts: state.all, filter: filter)
-        state.displayed = filteredPosts
+        state = .loaded(posts: state.all, filter: filter)
     }
     
     func applyFavoriteAction(post: Post) {
         let updatedPost = repository.applyFavoriteAction(post: post)
-        if let index = state.all.firstIndex(of: post) {
-            state.all[index] = updatedPost
-        }
-        
-        if let index = state.displayed.firstIndex(of: post) {
-            state.displayed[index] = updatedPost
-        }
-        
-//        state = .posts(userID: userID, posts: posts, displayed: displayed, filter: filter)
+        state = .updated(state: state, updated: updatedPost)
     }
-    
-//    private func reloadPostsVMs() {
-//        let filter = state.filter
-//        postsVMs = state.displayed
-//            .filter { post in
-//                if filter == .favorites {
-//                    return post.favorite
-//                }
-//                return true
-//            }
-//            .map { post in
-//                let vm = PostViewModel(post: post)
-//                vm.favoriteAction = { [weak self] p in
-//                    self?.applyFavoriteAction(post: p)
-//                }
-//                return vm
-//            }
-//    }
     
     var postsVMs: [PostViewModel] {
-//        guard case let .posts(_, _, displayed, _) = state else {
-//            return []
-//        }
-        let filter = state.filter
-        return state.displayed
-//            .filter { post in
-//                if filter == .favorites {
-//                    return post.favorite
-//                }
-//                return true
-//            }
-            .map { post in
-                let vm = PostViewModel(post: post)
-                vm.favoriteAction = { [weak self] p in
-                    self?.applyFavoriteAction(post: p)
-                }
-                return vm
+        return state.displayed.map { post in
+            PostViewModel(post: post) { [weak self] in
+                self?.applyFavoriteAction(post: $0)
             }
-    }
-    
-    private func filteredPosts(posts: [Post], filter: Filter) -> [Post] {
-        posts.filter { post in
-            if filter == .favorites {
-                return post.favorite
-            }
-            return true
         }
     }
-    
-    var selectedFilter: Binding<Filter> {
-        return Binding { [weak self] in
-            return self?.state.filter ?? .all
-        } set: { [weak self] newFilter in
-            self?.applyFilter(filter: newFilter)
-        }
-    }
-
 }

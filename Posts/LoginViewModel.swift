@@ -30,9 +30,9 @@ class LoginViewModel: ObservableObject {
 
         static func loggedIn(userID: String) -> Self {
             Self(
-                loginButtonIsDisabled: true,
+                loginButtonIsDisabled: false,
                 activityIndicatorIsHidden: true,
-                textFieldIsDisabled: true,
+                textFieldIsDisabled: false,
                 userID: userID,
                 isLoggedIn: true
             )
@@ -67,7 +67,6 @@ class LoginViewModel: ObservableObject {
             state = .failure(error: repoError)
         } catch {
             print("Unexpected error type after login(userID:) call")
-//            state = .failure(error: RepositoryError.unknown(description: error.localizedDescription))
             state = .failure(error: RepositoryError.unknown(error: error))
         }
     }

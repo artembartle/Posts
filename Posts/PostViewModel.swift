@@ -9,13 +9,14 @@ class PostViewModel {
     let body: String
     let favorite: Bool
     
-    var favoriteAction: ((_ post: Post) -> ())?
+    private let favoriteAction: ((_ post: Post) -> ())?
     
-    init(post: Post) {
+    init(post: Post, favoriteAction: ((_ post: Post) -> ())? = nil) {
         self.post = post
         self.title = post.title
         self.body = post.body
         self.favorite = post.favorite
+        self.favoriteAction = favoriteAction
     }
     
     func triggerFavoriteAction() {
