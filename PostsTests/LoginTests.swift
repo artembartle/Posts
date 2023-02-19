@@ -5,15 +5,18 @@ import Factory
 
 @MainActor
 final class LoginTests: XCTestCase {
-    var sut: FeedViewModel!
-    var stateCollector: StateCollector<FeedViewModel.State>!
+    let userID = "1"
+    var sut: LoginViewModel!
+    var stateCollector: StateCollector<LoginViewModel.State>!
     var repository: MockRepository!
     
     override func setUpWithError() throws {
         Container.Registrations.push()
         Container.setupMocks()
         
-        sut = Container.feedViewModel()
+        sut = Container.loginViewModel()
+        sut.state.userID = userID
+        
         repository = Container.postsRepository() as? MockRepository
         stateCollector = StateCollector(sut.$state)
     }
@@ -23,43 +26,43 @@ final class LoginTests: XCTestCase {
     }
     
     func testLogin() async {
-        // Given userID and 5 posts
-        let userID = "1"
+        // Given userID and repository with 5 posts
+//        let userID = "1"
         let posts = (0..<5).map { _ in Post.stub() }
         repository.response = .success(posts)
                 
         // When call login
-        await sut.login(userID: userID)
+        await sut.login()
         
         // Then collected states should be
-        // initial -> fetching -> posts
+        // initial -> fetching -> loggedIn
         XCTAssertEqual(
             stateCollector.collectedStates,
             [
-                .initial,
+                .initial(userID: userID),
                 .fetching(userID: userID),
-                .posts(userID: userID, posts: posts, displayed: posts)
+                .loggedIn(userID: userID)
             ]
         )
     }
     
     func testLoginFailure() async {
-        // Given userID and networking related error
+        // Given userID and network-related error
         let userID = "1"
-        let error = RepositoryError.apiError(error: .network)
+        let error = RepositoryError.apiError(error: APIError.network)
         repository.response = .failure(error)
 
         // When call login
-        await sut.login(userID: userID)
+        await sut.login()
 
         // Then collected states should be
         // initial -> fetching -> failure
         XCTAssertEqual(
             stateCollector.collectedStates,
             [
-                .initial,
+                .initial(userID: userID),
                 .fetching(userID: userID),
-                .failure(userID: userID, error: error.localizedDescription)
+                .failure(error: error)
             ]
         )
     }

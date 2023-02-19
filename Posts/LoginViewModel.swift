@@ -13,12 +13,15 @@ class LoginViewModel: ObservableObject {
         var userID: String = ""
         var isLoggedIn = false
         
-        static let initial = Self(
-            loginButtonIsDisabled: false,
-            activityIndicatorIsHidden: true,
-            textFieldIsDisabled: false
-        )
-        
+        static func initial(userID: String = "") -> Self {
+            Self(
+                loginButtonIsDisabled: false,
+                activityIndicatorIsHidden: true,
+                textFieldIsDisabled: false,
+                userID: userID
+            )
+        }
+                
         static func fetching(userID: String) -> Self {
             Self(
                 loginButtonIsDisabled: true,
@@ -50,9 +53,9 @@ class LoginViewModel: ObservableObject {
     }
     
     @Injected(Container.postsRepository) private var repository
-    @Published var state: State = .initial
+    @Published var state: State
     
-    init(state: State = .initial) {
+    init(state: State = .initial()) {
         self.state = state
     }
     

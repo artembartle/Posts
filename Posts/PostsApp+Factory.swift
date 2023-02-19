@@ -18,5 +18,6 @@ extension Container {
     static let postsRepository = Factory<PostsRepository>(scope: .singleton) { PostsRepositoryImpl() }
     
     static let loginViewModel = Factory<LoginViewModel> { LoginViewModel() }
+    
     static let feedViewModel = Factory<FeedViewModel> { FeedViewModel() }
 }

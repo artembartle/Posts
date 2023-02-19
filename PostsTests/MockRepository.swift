@@ -5,7 +5,14 @@ import Foundation
 class MockRepository: PostsRepository {
     var response: Result<[Post], RepositoryError>?
     
-    func getPosts(userID: String) async throws -> [Post] {
+    func login(userID: String) async throws {
+        guard let response = response else {
+            return
+        }
+        let _ = try response.get()
+    }
+    
+    func getPosts() async throws -> [Post] {
         guard let response = response else {
             return []
         }

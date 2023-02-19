@@ -3,4 +3,85 @@
    uuid = "1BC5759C-4433-4B3C-805F-8144C9B8752A"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3E764486-4E6D-4502-9405-29F20ACEACC7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Posts/LoginViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "login()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D4C6FE28-9939-4701-878A-24056578791F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Posts/LoginViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "login()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D4C6FE28-9939-4701-878A-24056578791F - bd1758a991f8546b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for PostsTests.LoginViewModel.login() async -&gt; ()"
+                  moduleName = "PostsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/Posts/LoginViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "317">
+               </Location>
+               <Location
+                  uuid = "D4C6FE28-9939-4701-878A-24056578791F - 5066f903e31f9d96"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for PostsTests.LoginViewModel.login() async -&gt; ()"
+                  moduleName = "PostsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/Posts/LoginViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "D4C6FE28-9939-4701-878A-24056578791F - d3aa0b559eb66d66"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for PostsTests.LoginViewModel.login() async -&gt; ()"
+                  moduleName = "PostsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/Posts/LoginViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "187">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
