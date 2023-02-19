@@ -24,7 +24,6 @@ struct FeedView: View {
             
             Spacer()
             
-//            Picker("", selection: $viewModel.state.filter) {
             Picker("", selection: viewModel.selectedFilter) {
                 Text("All").tag(ViewModel.Filter.all)
                 Text("Favorites").tag(ViewModel.Filter.favorites)

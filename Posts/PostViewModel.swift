@@ -2,14 +2,17 @@
 
 import Foundation
 
-class PostViewModel {
-    fileprivate let post: Post
+class PostViewModel: Identifiable {
+    private let post: Post
+    private let favoriteAction: ((_ post: Post) -> ())?
     
     let title: String
     let body: String
     let favorite: Bool
     
-    private let favoriteAction: ((_ post: Post) -> ())?
+    var id: String {
+        post.id
+    }
     
     init(post: Post, favoriteAction: ((_ post: Post) -> ())? = nil) {
         self.post = post
@@ -21,11 +24,5 @@ class PostViewModel {
     
     func triggerFavoriteAction() {
         favoriteAction?(post)
-    }
-}
-
-extension PostViewModel: Identifiable {
-    var id: String {
-        post.id
     }
 }
