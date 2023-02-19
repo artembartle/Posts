@@ -14,8 +14,8 @@ extension Container {
             return UserDefaultsFavorites<Post.ID>(userDefaults: userDefaults)
         }
         
-        postsRepository.register {
-            MockRepository()
+        apiClient.register {
+            MockAPIClient()
         }
     }
 }

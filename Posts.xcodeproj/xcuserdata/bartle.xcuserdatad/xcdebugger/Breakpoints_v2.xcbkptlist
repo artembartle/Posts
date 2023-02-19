@@ -7,78 +7,264 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3E764486-4E6D-4502-9405-29F20ACEACC7"
+            uuid = "7973139C-049E-4C90-84AD-97D9086DF725"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Posts/LoginViewModel.swift"
+            filePath = "Posts/PostsRepository.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "login()"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "getPosts()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D4C6FE28-9939-4701-878A-24056578791F"
+            uuid = "DC0335A8-F457-4284-A2C9-2D5544CA9019"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Posts/LoginViewModel.swift"
+            filePath = "Posts/PostsRepository.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "login()"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "loadPosts(userID:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "D4C6FE28-9939-4701-878A-24056578791F - bd1758a991f8546b"
+                  uuid = "DC0335A8-F457-4284-A2C9-2D5544CA9019 - 2a92319b72b349d9"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for PostsTests.LoginViewModel.login() async -&gt; ()"
+                  symbolName = "(3) suspend resume partial function for PostsTests.PostsRepositoryImpl.loadPosts(userID: Swift.String) async throws -&gt; Swift.Array&lt;PostsTests.Post&gt;"
                   moduleName = "PostsTests"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/Posts/LoginViewModel.swift"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/Posts/PostsRepository.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "317">
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "168">
                </Location>
                <Location
-                  uuid = "D4C6FE28-9939-4701-878A-24056578791F - 5066f903e31f9d96"
+                  uuid = "DC0335A8-F457-4284-A2C9-2D5544CA9019 - 2a92319b72b349d9"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for PostsTests.LoginViewModel.login() async -&gt; ()"
+                  symbolName = "(3) suspend resume partial function for PostsTests.PostsRepositoryImpl.loadPosts(userID: Swift.String) async throws -&gt; Swift.Array&lt;PostsTests.Post&gt;"
                   moduleName = "PostsTests"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/Posts/LoginViewModel.swift"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/Posts/PostsRepository.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "52">
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "320">
                </Location>
                <Location
-                  uuid = "D4C6FE28-9939-4701-878A-24056578791F - d3aa0b559eb66d66"
+                  uuid = "DC0335A8-F457-4284-A2C9-2D5544CA9019 - 5212cb32482cb7e1"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for PostsTests.LoginViewModel.login() async -&gt; ()"
+                  symbolName = "closure #1 (PostsTests.PostDTO) -&gt; PostsTests.Post in PostsTests.PostsRepositoryImpl.loadPosts(userID: Swift.String) async throws -&gt; Swift.Array&lt;PostsTests.Post&gt;"
                   moduleName = "PostsTests"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/Posts/LoginViewModel.swift"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/Posts/PostsRepository.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "187">
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "167">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A4CD7F07-2F75-4364-9E3A-00A6F8A048D0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PostsTests/PostsRepository_LoadPostsTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "testLoadPosts()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A4CD7F07-2F75-4364-9E3A-00A6F8A048D0 - 3bddd074098d60ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for PostsTests.PostsRepository_LoadPostsTests.testLoadPosts() async throws -&gt; ()"
+                  moduleName = "PostsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/PostsTests/PostsRepository_LoadPostsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "481">
+               </Location>
+               <Location
+                  uuid = "A4CD7F07-2F75-4364-9E3A-00A6F8A048D0 - 7344ac9aff2a3d9f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for PostsTests.PostsRepository_LoadPostsTests.testLoadPosts() async throws -&gt; ()"
+                  moduleName = "PostsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/PostsTests/PostsRepository_LoadPostsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "45">
+               </Location>
+               <Location
+                  uuid = "A4CD7F07-2F75-4364-9E3A-00A6F8A048D0 - d65cbee52444dca9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for PostsTests.PostsRepository_LoadPostsTests.testLoadPosts() async throws -&gt; ()"
+                  moduleName = "PostsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/PostsTests/PostsRepository_LoadPostsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "78">
+               </Location>
+               <Location
+                  uuid = "A4CD7F07-2F75-4364-9E3A-00A6F8A048D0 - f612accfcf32bab4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for PostsTests.PostsRepository_LoadPostsTests.testLoadPosts() async throws -&gt; ()"
+                  moduleName = "PostsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/PostsTests/PostsRepository_LoadPostsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "39">
+               </Location>
+               <Location
+                  uuid = "A4CD7F07-2F75-4364-9E3A-00A6F8A048D0 - 3bddd074098d604a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for PostsTests.PostsRepository_LoadPostsTests.testLoadPosts() async throws -&gt; ()"
+                  moduleName = "PostsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/PostsTests/PostsRepository_LoadPostsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "481">
+               </Location>
+               <Location
+                  uuid = "A4CD7F07-2F75-4364-9E3A-00A6F8A048D0 - 7344ac9aff2a3d7e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for PostsTests.PostsRepository_LoadPostsTests.testLoadPosts() async throws -&gt; ()"
+                  moduleName = "PostsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/PostsTests/PostsRepository_LoadPostsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "45">
+               </Location>
+               <Location
+                  uuid = "A4CD7F07-2F75-4364-9E3A-00A6F8A048D0 - d65cbee52444dc48"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for PostsTests.PostsRepository_LoadPostsTests.testLoadPosts() async throws -&gt; ()"
+                  moduleName = "PostsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/PostsTests/PostsRepository_LoadPostsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "78">
+               </Location>
+               <Location
+                  uuid = "A4CD7F07-2F75-4364-9E3A-00A6F8A048D0 - f612accfcf32ba55"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for PostsTests.PostsRepository_LoadPostsTests.testLoadPosts() async throws -&gt; ()"
+                  moduleName = "PostsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/PostsTests/PostsRepository_LoadPostsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "39">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "44592CD0-14FD-490C-8BEE-0E7D81CCBFF5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PostsTests/PostsRepository_LoadPostsTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "testLoadPosts()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "44592CD0-14FD-490C-8BEE-0E7D81CCBFF5 - 3bddd074098d60d6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for PostsTests.PostsRepository_LoadPostsTests.testLoadPosts() async throws -&gt; ()"
+                  moduleName = "PostsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/PostsTests/PostsRepository_LoadPostsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "309">
+               </Location>
+               <Location
+                  uuid = "44592CD0-14FD-490C-8BEE-0E7D81CCBFF5 - 3bddd074098d60f5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for PostsTests.PostsRepository_LoadPostsTests.testLoadPosts() async throws -&gt; ()"
+                  moduleName = "PostsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartle/Desktop/Tech-Assign/DeutscheBank/Posts/PostsTests/PostsRepository_LoadPostsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "309">
                </Location>
             </Locations>
          </BreakpointContent>

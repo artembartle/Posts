@@ -16,12 +16,12 @@ extension FeedViewModel.State {
 
 @MainActor
 final class FavoritesTests: XCTestCase {
-    override func setUpWithError() throws {
+    override func setUp() {
         Container.Registrations.push()
         Container.setupMocks()
     }
     
-    override func tearDown() async throws {
+    override func tearDown() {
         Container.Registrations.pop()
     }
     

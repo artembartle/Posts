@@ -13,6 +13,10 @@ final class FeedTests: XCTestCase {
         Container.Registrations.push()
         Container.setupMocks()
         
+        Container.postsRepository.register {
+            MockRepository()
+        }
+        
         sut = Container.feedViewModel()
         
         repository = Container.postsRepository() as? MockRepository
@@ -28,7 +32,7 @@ final class FeedTests: XCTestCase {
         let posts = (0..<5).map { _ in Post.stub() }
         repository.response = .success(posts)
                 
-        // When call login
+        // When call load
         await sut.load()
         
         // Then collected states should be
@@ -52,6 +56,7 @@ final class FeedTests: XCTestCase {
 
         // Then collected states should be
         // initial -> fetching -> failure
+//        TODO: Add fetching and failure states to FeedVM
         XCTAssertEqual(
             stateCollector.collectedStates,
             [
@@ -60,30 +65,4 @@ final class FeedTests: XCTestCase {
             ]
         )
     }
-    
-//    func testApplyOnlyFavoritesFilter() {
-//        // Given userID and favorite posts and non-favorite posts
-//        let userID = "1"
-//        let favorite = [Post.stub(favorite: true)]
-//        let nonFavorite = [Post.stub(favorite: false)]
-//
-//        let _ = Container.feedViewModel.register {
-//            FeedViewModel(state: .initial)
-//        }
-//        let sut = Container.feedViewModel()
-//        let stateCollector = StateCollector(sut.$state)
-//
-//        // When
-//        sut.applyFilter(filter: .favorites)
-//
-//        // Then collected states should be
-//        // posts(fav+nonFav, filter: .all) -> posts(fav, filter: .favorites)
-//        XCTAssertEqual(
-//            stateCollector.collectedStates,
-//            [
-//                .posts(userID: userID, posts: favorite + nonFavorite, displayed: favorite + nonFavorite, filter: .all),
-//                .posts(userID: userID, posts: favorite + nonFavorite, displayed: favorite, filter: .favorites)
-//            ]
-//        )
-//    }
 }

@@ -14,6 +14,10 @@ final class LoginTests: XCTestCase {
         Container.Registrations.push()
         Container.setupMocks()
         
+        Container.postsRepository.register {
+            MockRepository()
+        }
+        
         sut = Container.loginViewModel()
         sut.state.userID = userID
         
