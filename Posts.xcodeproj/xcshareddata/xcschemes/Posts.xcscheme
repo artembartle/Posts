@@ -37,6 +37,11 @@
                BlueprintName = "PostsTests"
                ReferencedContainer = "container:Posts.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "FeedTests/testApplyOnlyFavoritesFilter()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

@@ -26,8 +26,7 @@ final class LoginTests: XCTestCase {
     }
     
     func testLogin() async {
-        // Given userID and repository with 5 posts
-//        let userID = "1"
+        // Given ViewModel and repository with 5 posts
         let posts = (0..<5).map { _ in Post.stub() }
         repository.response = .success(posts)
                 
@@ -47,8 +46,7 @@ final class LoginTests: XCTestCase {
     }
     
     func testLoginFailure() async {
-        // Given userID and network-related error
-        let userID = "1"
+        // Given viewModel and network-related error
         let error = RepositoryError.apiError(error: APIError.network)
         repository.response = .failure(error)
 
