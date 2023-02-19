@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7491D03329A26F8E00726770 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7491D03229A26F8E00726770 /* LoginView.swift */; };
+		7491D03529A2772D00726770 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7491D03429A2772D00726770 /* LoginViewModel.swift */; };
 		7495A53929A110CB00EA75E7 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 7495A53829A110CB00EA75E7 /* Factory */; };
 		7495A53B29A1126600EA75E7 /* PostsApp+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7495A53A29A1126600EA75E7 /* PostsApp+Factory.swift */; };
 		7495A53C29A1126600EA75E7 /* PostsApp+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7495A53A29A1126600EA75E7 /* PostsApp+Factory.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7491D03229A26F8E00726770 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7491D03429A2772D00726770 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		7495A53A29A1126600EA75E7 /* PostsApp+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostsApp+Factory.swift"; sourceTree = "<group>"; };
 		7495A53D29A11DF400EA75E7 /* PostTests+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostTests+Factory.swift"; sourceTree = "<group>"; };
 		7495A53F29A13A8700EA75E7 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 				74A464CC299FA0E4008AC34E /* PostViewModel.swift */,
 				74965D97299CCBB40092412C /* FeedView.swift */,
 				74965DB5299CE1400092412C /* FeedViewModel.swift */,
+				7491D03229A26F8E00726770 /* LoginView.swift */,
+				7491D03429A2772D00726770 /* LoginViewModel.swift */,
 				74A464C6299E7D04008AC34E /* PostsViewModel+SwiftUI.swift */,
 				74A464CF299FEAC3008AC34E /* PostsRepository.swift */,
 				74A464CA299F9337008AC34E /* FavoritesStorage.swift */,
@@ -259,7 +265,9 @@
 				74965DB6299CE1400092412C /* FeedViewModel.swift in Sources */,
 				74965D98299CCBB40092412C /* FeedView.swift in Sources */,
 				74965D96299CCBB40092412C /* PostsApp.swift in Sources */,
+				7491D03329A26F8E00726770 /* LoginView.swift in Sources */,
 				74A464D0299FEAC3008AC34E /* PostsRepository.swift in Sources */,
+				7491D03529A2772D00726770 /* LoginViewModel.swift in Sources */,
 				74965DA4299CD25F0092412C /* APIClient.swift in Sources */,
 				74A464CD299FA0E4008AC34E /* PostViewModel.swift in Sources */,
 				74A464C7299E7D04008AC34E /* PostsViewModel+SwiftUI.swift in Sources */,

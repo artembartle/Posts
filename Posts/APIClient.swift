@@ -34,7 +34,7 @@ enum APIError: Equatable {
 }
 
 extension APIError: LocalizedError {
-    var localizedDescription: String? {
+    var errorDescription: String? {
         switch self {
         case .parsing:
             return NSLocalizedString("A decoding error has occured.", comment: "")

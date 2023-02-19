@@ -8,77 +8,36 @@ struct FeedView: View {
     typealias VMState = FeedViewModel.State
     
     @ObservedObject var viewModel = Container.feedViewModel()
-    @State var userID: String = ""
-
-    var body: some View {
-        switch viewModel.state {
-        case .initial:
-            loginView
-            
-        case .fetching:
-            ZStack {
-                loginView
-                fetching
-            }
-        case let .posts(_, posts, _, _):
-            VStack {
-                if posts.count > 0 {
-                    List {
-                        ForEach(viewModel.postsVMs) {
-                            PostView(viewModel:$0)
-                        }
-                    }
-                    
-                    Picker("", selection: viewModel.selectedFilter) {
-                        Text("All").tag(ViewModel.Filter.all)
-                        Text("Favorites").tag(ViewModel.Filter.favorites)
-                    }
-                    .pickerStyle(.segmented)
-                    .padding()
-                } else {
-                    Text("There's no posts so far!")
-                }
-            }
-        case .failure:
-            loginView
-                .alert("Error",
-                       isPresented: $viewModel.isAlertPresented,
-                       presenting: viewModel.alertTitle,
-                       actions: { _ in },
-                       message: { Text($0) })
-        }
-    }
-}
-
-private extension FeedView {
-    var loginView: some View {
-        VStack {
-            TextField("UserID", text: $userID)
-                .background {
-                    Color.blue
-                }
-            
-            Button("Login") {
-                Task {
-                    await viewModel.login(userID: userID)
-                }
-            }
-            .foregroundColor(.white)
-            .padding()
-            .background {
-                Color.blue
-            }
-        }
-        .padding()
-    }
     
-    var fetching: some View {
-        ZStack {
-            Color.gray
-            ProgressView()
+    var body: some View {
+        VStack {
+            if !viewModel.state.isEmpty {
+                List {
+                    ForEach(viewModel.postsVMs) {
+                        PostView(viewModel:$0)
+                    }
+                }
+            } else {
+                Spacer()
+                Text("There's no posts so far!")
+            }
+            
+            Spacer()
+            
+//            Picker("", selection: $viewModel.state.filter) {
+            Picker("", selection: viewModel.selectedFilter) {
+                Text("All").tag(ViewModel.Filter.all)
+                Text("Favorites").tag(ViewModel.Filter.favorites)
+            }
+            .pickerStyle(.segmented)
+            .padding()
+        }
+        .task {
+            await viewModel.load()
         }
     }
 }
+
 
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
@@ -88,14 +47,16 @@ struct FeedView_Previews: PreviewProvider {
             }
             let client = MockAPIClient()
             client.response = .success(dtos)
+            client.response = .failure(.incorrectUserId)
             return client
         }
         
-        let allPosts = [Post.stub()]
+        let allPosts = [Post.stub(favorite: false), Post.stub(favorite: true), Post.stub(favorite: false)]
         let _ = Container.feedViewModel.register {
-            FeedViewModel(state: .posts(userID: "1",
-                                        posts: allPosts,
-                                        displayed: allPosts))
+//            let state = FeedViewModel.State.initial
+            let state = FeedViewModel.State.loaded(posts: allPosts)
+            let vm = FeedViewModel(state: state)
+            return vm
         }
         
         FeedView()
